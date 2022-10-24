@@ -1,4 +1,6 @@
 //using BookStore.Data;
+using BookStore.Models;
+using BookStore.Models.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,7 +29,9 @@ namespace BookStore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-           
+            services.AddMvc();
+            services.AddSingleton<IBookstoreRepository<Author>, AuthorRepository>();
+            services.AddSingleton<IBookstoreRepository<Book>, BookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
